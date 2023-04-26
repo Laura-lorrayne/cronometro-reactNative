@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import {fromS} from 'hh-mm-ss';
 
 export default function App() {
   const [numero, setNumero] = useState(0);
@@ -26,7 +27,7 @@ export default function App() {
   limpar = () => {
     setUltimo(numero)
     setNumero(0)
-    setInit(false) //FIXME
+    setInit(false)
   }
 
   return (
@@ -35,7 +36,7 @@ export default function App() {
 
       <Image source={require("./src/img/crono.png")} />
 
-      <Text style={styles.timer}>{numero}</Text>
+      <Text style={styles.timer}>{fromS(numero, 'hh:mm:ss')}</Text>
 
       <View style={styles.btnArea}>
         <TouchableOpacity style={styles.btn} onPress ={comecar}>
@@ -48,7 +49,7 @@ export default function App() {
       </View>
       <View style={styles.areaUltima}>
         <Text style={styles.textoCorrida}>
-          {ultimo !== null ? `Ultimo tempo : ${ultimo}` : ""}
+          {ultimo !== null ? `Ultimo tempo : ${fromS(ultimo, 'hh:mm:ss')}` : ""}
         </Text>
       </View>
     </View>
